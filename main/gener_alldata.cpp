@@ -74,8 +74,25 @@ void CreatePointsLines(Points& points, Lines& lines)
     save_points("all_points.txt", points);
 }
 
-int main(){
+int main()
+{
+/*
+    Eigen::MatrixXf A(Eigen::MatrixXf::Random(5,3)), thinQ(Eigen::MatrixXf::Identity(5,3)), Q;
+    A.setRandom();
+    Eigen::HouseholderQR<Eigen::MatrixXf> qr(A);
+    Q = qr.householderQ();
+    thinQ = qr.householderQ() * thinQ;
+    std::cout << "The complete unitary matrix Q is:\n" << Q << "\n\n";
+    std::cout << "The thin matrix Q is:\n" << thinQ << "\n\n";
 
+    Eigen::MatrixXf R = qr.matrixQR().triangularView<Eigen::Upper>();
+
+    std::cout << "R is:\n" << qr.matrixQR()  << "\n\n";
+    std::cout << "R is:\n" << R  << "\n\n";
+    std::cout << "R is:\n" << R.topRows(3)  << "\n\n";
+    // std::cout << "Q(:,1) is:\n" << R  << "\n\n";
+
+    std::cout << " pause " << std::endl;
     // Eigen::Quaterniond Qwb;
     // Qwb.setIdentity();
     // Eigen::Vector3d omega (0,0,M_PI/10);
@@ -90,6 +107,7 @@ int main(){
     //     Qwb = Qwb * dq;
     // }
     // std::cout << Qwb.coeffs().transpose() <<"\n"<<Qwb.toRotationMatrix() << std::endl;
+*/
 
     // 建立keyframe文件夹
     mkdir("keyframe", 0777);

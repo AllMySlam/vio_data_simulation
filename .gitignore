@@ -1,6 +1,10 @@
 *.py[cod]
 build/
+bin
 bin/keyframe/
+bin/data_gen
 bin/*.txt
 *~
 *.DS_Store
+.idea
+cmake-build-debug

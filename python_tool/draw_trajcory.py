@@ -26,27 +26,38 @@ position1 = []
 quaterntions1 = []
 timestamp1 = []
 data = np.loadtxt(filepath + '/imu_int_pose.txt')
+# print "type: ", type(data)
 # timestamp1 = data[:,0]
 # quaterntions1 = data[:,[tx_index + 6, tx_index + 3, tx_index + 4, tx_index + 5]] # qw,qx,qy,qz
 position1 = data[:,[tx_index, tx_index + 1, tx_index + 2]]
 
-# cam_pose_opt_o_0   cam_pose_opt_o_0
+# imu_pose   imu_spline
 position2 = []
 quaterntions2 = []
 timestamp2 = []
-data = np.loadtxt(filepath + '/imu_int_pose_noise.txt')
+data = np.loadtxt(filepath + '/imu_pose_noise.txt')
 # timestamp2 = data[:,0]
 # quaterntions2 = data[:,[tx_index + 6, tx_index + 3, tx_index + 4, tx_index + 5]] # qw,qx,qy,qz
 position2 = data[:,[tx_index, tx_index + 1, tx_index + 2]]
+
+# cam_pose_opt_o_0   cam_pose_opt_o_0
+position3 = []
+quaterntions3 = []
+timestamp3 = []
+data = np.loadtxt(filepath + '/imu_int_pose_noise.txt')
+# timestamp3 = data[:,0]
+# quaterntions3 = data[:,[tx_index + 6, tx_index + 3, tx_index + 4, tx_index + 5]] # qw,qx,qy,qz
+position3 = data[:,[tx_index, tx_index + 1, tx_index + 2]]
 
 
 ### plot 3d
 fig = plt.figure()
 ax = fig.gca(projection='3d')
 
-ax.plot(position[:,0], position[:,1], position[:,2], label='gt')
+ax.plot(position[:,0], position[:,1], position[:,2], label='imu_gt')
 ax.plot(position1[:,0], position1[:,1], position1[:,2], label='imu_int')
-# ax.plot(position2[:,0], position2[:,1], position2[:,2], label='noise')
+# ax.plot(position2[:,0], position2[:,1], position2[:,2], label='imu_noise_gt')
+# ax.plot(position3[:,0], position3[:,1], position3[:,2], label='imu_noise_int')
 ax.plot([position[0,0]], [position[0,1]], [position[0,2]], 'r.', label='start')
 
 ax.legend()

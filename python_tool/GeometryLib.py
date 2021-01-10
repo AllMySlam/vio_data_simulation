@@ -106,10 +106,14 @@ def drawCoordinateFrame( ax, rpy, t):
     x1 = R.dot(x0) + t
     y1 = R.dot(y0) + t
     z1 = R.dot(z0) + t
-    
+    # x = Arrow3D(   [o[0], x0[0]*10],    [o[1], x0[1]],     [o[2], x0[2]] ,  mutation_scale=20, arrowstyle='-|>', color='r')
+
     x = Arrow3D(   [o1[0], x1[0]],    [o1[1], x1[1]],     [o1[2], x1[2]] ,  mutation_scale=20, arrowstyle='-|>', color='r')
+    # x = Arrow3D(   [o[0], x1[0]],    [o[1], x1[1]],     [o[2], x1[2]] ,  mutation_scale=20, arrowstyle='-|>', color='r')
     y = Arrow3D(   [o1[0], y1[0]],    [o1[1], y1[1]],     [o1[2], y1[2]] ,  mutation_scale=20, arrowstyle='-|>', color='b')
+    # y = Arrow3D(   [o[0], y1[0]],    [o[1], y1[1]],     [o[2], y1[2]] ,  mutation_scale=20, arrowstyle='-|>', color='b')
     z = Arrow3D(   [o1[0], z1[0]],    [o1[1], z1[1]],     [o1[2], z1[2]] ,  mutation_scale=20, arrowstyle='-|>', color='g')
+    # z = Arrow3D(   [o[0], z1[0]],    [o[1], z1[1]],     [o[2], z1[2]] ,  mutation_scale=20, arrowstyle='-|>', color='g')
 
    # draw
     ax.add_artist( x)    

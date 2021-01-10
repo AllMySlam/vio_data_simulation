@@ -16,8 +16,8 @@ struct MotionData
 {
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
     double timestamp;
-    Eigen::Matrix3d Rwb;
-    Eigen::Vector3d twb;
+    Eigen::Matrix3d Rwb; // cam 复用该参数，实际为Rwc
+    Eigen::Vector3d twb; // cam 复用该参数，实际为twc
     Eigen::Vector3d imu_acc;
     Eigen::Vector3d imu_gyro;
 

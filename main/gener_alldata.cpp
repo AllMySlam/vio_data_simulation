@@ -64,11 +64,11 @@ void CreatePointsLines(Points& points, Lines& lines)
     }
 
     // create more 3d points, you can comment this code
-    int n = points.size();
-    for (int j = 0; j < n; ++j) {
-        Eigen::Vector4d p = points[j] + Eigen::Vector4d(0.5,0.5,-0.5,0);
-        points.push_back(p);
-    }
+//    int n = points.size();
+//    for (int j = 0; j < n; ++j) {
+//        Eigen::Vector4d p = points[j] + Eigen::Vector4d(0.5,0.5,-0.5,0);
+//        points.push_back(p);
+//    }
 
     // save points
     save_points("all_points.txt", points);
@@ -139,6 +139,8 @@ int main()
     imuGen.init_velocity_ = imudata[0].imu_velocity;
     imuGen.init_twb_ = imudata.at(0).twb;
     imuGen.init_Rwb_ = imudata.at(0).Rwb;
+    std::cout<< imuGen.init_twb_.transpose() << std::endl;
+    std::cout << imuGen.init_Rwb_ << std::endl;
     save_Pose("imu_pose.txt", imudata);
     save_Pose("imu_pose_noise.txt", imudata_noise);
 
@@ -153,8 +155,8 @@ int main()
         MotionData cam;
 
         cam.timestamp = imu.timestamp;
-        cam.Rwb = imu.Rwb * params.R_bc;    // cam frame in world frame
-        cam.twb = imu.twb + imu.Rwb * params.t_bc; //  Tcw = Twb * Tbc ,  t = Rwb * tbc + twb
+        cam.Rwb = imu.Rwb * params.R_bc;    // cam frame in world frame，此处用Rwb替代Rwc
+        cam.twb = imu.twb + imu.Rwb * params.t_bc; //  Twc = Twb * Tbc ,  t = Rwb * tbc + twb
 
         camdata.push_back(cam);
         t += 1.0/params.cam_frequency;
@@ -178,11 +180,14 @@ int main()
             pw[3] = 1;                               //改成齐次坐标最后一位
             Eigen::Vector4d pc1 = Twc.inverse() * pw; // T_wc.inverse() * Pw  -- > point in cam frame
 
-            if(pc1(2) < 0) continue; // z必须大于０,在摄像机坐标系前方
+            if(pc1(2) < 0)
+                continue; // z必须大于０,在摄像机坐标系前方
 
             Eigen::Vector2d obs(pc1(0)/pc1(2), pc1(1)/pc1(2)) ;
             // if( (obs(0)*460 + 255) < params.image_h && ( obs(0) * 460 + 255) > 0 &&
                    // (obs(1)*460 + 255) > 0 && ( obs(1)* 460 + 255) < params.image_w )
+            if( (obs(0)*params.fx + params.cx) < params.image_h && ( obs(0) * params.fx + params.cx) > 0 &&
+                (obs(1)*params.fy + params.cy) > 0 && ( obs(1)* params.fy + params.cy) < params.image_w )
             {
                 points_cam.push_back(points[i]);
                 features_cam.push_back(obs);
@@ -212,7 +217,8 @@ int main()
             Eigen::Vector4d pc1 = Twc.inverse() * linept.first; // T_wc.inverse() * Pw  -- > point in cam frame
             Eigen::Vector4d pc2 = Twc.inverse() * linept.second; // T_wc.inverse() * Pw  -- > point in cam frame
 
-            if(pc1(2) < 0 || pc2(2) < 0) continue; // z必须大于０,在摄像机坐标系前方
+            if(pc1(2) < 0 || pc2(2) < 0)
+                continue; // z必须大于０,在摄像机坐标系前方
 
             Eigen::Vector4d obs(pc1(0)/pc1(2), pc1(1)/pc1(2),
                                 pc2(0)/pc2(2), pc2(1)/pc2(2));

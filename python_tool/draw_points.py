@@ -58,7 +58,8 @@ ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 rpy = []
 t = []
-for i in range(0,400,5):
+frame_num=len(position)
+for i in range(0,frame_num,5):
     ax.clear()    
     ax.scatter(x, y, z,c='g')
     
@@ -69,7 +70,7 @@ for i in range(0,400,5):
     t.append( position[i] )
     p = position[i]
     for j in range(len(rpy)):
-        drawCoordinateFrame(ax, rpy[j], t[j])    
+        drawCoordinateFrame(ax, rpy[j], t[j])
     
     s = filepath + '/keyframe/all_points_' +str(i)+'.txt'
     with open(s, 'r') as f:   
@@ -89,8 +90,9 @@ for i in range(0,400,5):
         for line in data:
             odom = line.split()  # 将单个数据分隔开存好
             numbers_float = list(map(float, odom))  # 转化为浮点数
-            ax.plot([numbers_float[0], numbers_float[3]], [numbers_float[1], numbers_float[4]],'b' ,zs=[numbers_float[2], numbers_float[5]])
-        
+            # ax.plot([numbers_float[0], numbers_float[3]], [numbers_float[1], numbers_float[4]],'b' ,zs=[numbers_float[2], numbers_float[5]])
+            ax.plot([numbers_float[0], numbers_float[3]], [numbers_float[1], numbers_float[4]], [numbers_float[2], numbers_float[5]], 'y')
+
     ax.scatter(x1, y1, z1,c='r',marker='.')
     ax.set_xlabel('X')
     ax.set_ylabel('Y')

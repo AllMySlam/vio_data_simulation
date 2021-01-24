@@ -22,11 +22,11 @@ public:
     double t_end = 20;  //  20 s
 
     // noise
-    double gyro_bias_sigma = 1.0e-5;
-    double acc_bias_sigma = 0.0001;
+    double gyro_bias_sigma = 1.0e-5; // gyroscope bias random work noise standard deviation.     #4.0e-5
+    double acc_bias_sigma = 0.0001; // accelerometer bias random work noise standard deviation.  #0.02
 
-    double gyro_noise_sigma = 0.015;    // rad/s * 1/sqrt(hz)
-    double acc_noise_sigma = 0.019;      //　m/(s^2) * 1/sqrt(hz)
+    double gyro_noise_sigma = 0.015;    // rad/s * 1/sqrt(hz) # accelerometer measurement noise standard deviation. #0.2   0.04
+    double acc_noise_sigma = 0.019;      //　m/(s^2) * 1/sqrt(hz) # gyroscope measurement noise standard deviation.     #0.05  0.004
 
     double pixel_noise = 1;              // 1 pixel noise
 

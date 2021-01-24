@@ -64,11 +64,11 @@ void CreatePointsLines(Points& points, Lines& lines)
     }
 
     // create more 3d points, you can comment this code
-//    int n = points.size();
-//    for (int j = 0; j < n; ++j) {
-//        Eigen::Vector4d p = points[j] + Eigen::Vector4d(0.5,0.5,-0.5,0);
-//        points.push_back(p);
-//    }
+    int n = points.size();
+    for (int j = 0; j < n; ++j) {
+        Eigen::Vector4d p = points[j] + Eigen::Vector4d(0.5,0.5,-0.5,0);
+        points.push_back(p);
+    }
 
     // save points
     save_points("all_points.txt", points);
@@ -186,8 +186,8 @@ int main()
             Eigen::Vector2d obs(pc1(0)/pc1(2), pc1(1)/pc1(2)) ;
             // if( (obs(0)*460 + 255) < params.image_h && ( obs(0) * 460 + 255) > 0 &&
                    // (obs(1)*460 + 255) > 0 && ( obs(1)* 460 + 255) < params.image_w )
-            if( (obs(0)*params.fx + params.cx) < params.image_h && ( obs(0) * params.fx + params.cx) > 0 &&
-                (obs(1)*params.fy + params.cy) > 0 && ( obs(1)* params.fy + params.cy) < params.image_w )
+//            if( (obs(0)*params.fx + params.cx) < params.image_h && ( obs(0) * params.fx + params.cx) > 0 &&
+//                (obs(1)*params.fy + params.cy) > 0 && ( obs(1)* params.fy + params.cy) < params.image_w )
             {
                 points_cam.push_back(points[i]);
                 features_cam.push_back(obs);

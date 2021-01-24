@@ -21,6 +21,7 @@ x=[]
 y=[]
 z=[]                                                                                                
 
+# 1 点云
 with open(filepath + '/all_points.txt', 'r') as f:
     data = f.readlines()  #txt中所有字符串读入data  
   
@@ -31,7 +32,8 @@ with open(filepath + '/all_points.txt', 'r') as f:
         y.append( numbers_float[1] )
         z.append( numbers_float[2] )
 
-    
+
+# 2 相机轨迹
 position = []
 quaterntions = []
 timestamp = []
@@ -62,7 +64,8 @@ frame_num=len(position)
 for i in range(0,frame_num,5):
     ax.clear()    
     ax.scatter(x, y, z,c='g')
-    
+
+    # 3 画相机3d轨迹
     x1=[]
     y1=[]
     z1=[]    
@@ -71,7 +74,8 @@ for i in range(0,frame_num,5):
     p = position[i]
     for j in range(len(rpy)):
         drawCoordinateFrame(ax, rpy[j], t[j])
-    
+
+    # 4 画当前相机观测到的特征点与当前相机的连线
     s = filepath + '/keyframe/all_points_' +str(i)+'.txt'
     with open(s, 'r') as f:   
         data = f.readlines()  #txt中所有字符串读入data  
@@ -84,6 +88,7 @@ for i in range(0,frame_num,5):
             
             ax.plot( [ numbers_float[0],   p[0]  ] , [ numbers_float[1], p[1] ] , zs=[ numbers_float[2], p[2] ] )
 
+    # 5 画house的3d模型
     s = filepath + '/house_model/house.txt'
     with open(s, 'r') as f:
         data = f.readlines()  # txt中所有字符串读入data

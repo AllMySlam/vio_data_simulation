@@ -98,11 +98,11 @@ MotionData IMU::MotionModel(double t)
     // Rotation
     double k_roll = 0.1;
     double k_pitch = 0.2;
-    Eigen::Vector3d eulerAngles(k_roll * cos(t) , k_pitch * sin(t) , K*t );   // roll ~ [-0.2, 0.2], pitch ~ [-0.3, 0.3], yaw ~ [0,2pi]
-    Eigen::Vector3d eulerAnglesRates(-k_roll * sin(t) , k_pitch * cos(t) , K);      // euler angles 的导数
+//    Eigen::Vector3d eulerAngles(k_roll * cos(t) , k_pitch * sin(t) , K*t );   // roll ~ [-0.2, 0.2], pitch ~ [-0.3, 0.3], yaw ~ [0,2pi]
+//    Eigen::Vector3d eulerAnglesRates(-k_roll * sin(t) , k_pitch * cos(t) , K);      // euler angles 的导数
 
-//    Eigen::Vector3d eulerAngles(0.0,0.0, K*t );   // roll ~ 0, pitch ~ 0, yaw ~ [0,2pi]
-//    Eigen::Vector3d eulerAnglesRates(0.,0. , K);      // euler angles 的导数
+    Eigen::Vector3d eulerAngles(0.0,0.0, K*t );   // roll ~ 0, pitch ~ 0, yaw ~ [0,2pi]
+    Eigen::Vector3d eulerAnglesRates(0.,0. , K);      // euler angles 的导数
 
     Eigen::Matrix3d Rwb = euler2Rotation(eulerAngles);         // body frame to world frame
     if(t==0){

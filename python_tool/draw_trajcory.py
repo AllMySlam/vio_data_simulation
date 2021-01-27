@@ -74,7 +74,11 @@ model_fence = np.hstack((fence, square1, square2))
 print(model_fence)
 [m,n]=model_fence.shape
 
-
+with open("fence.txt", 'w') as f:
+    for i in range(n):
+        f.write("%10f %10f %10f %10f %10f %10f\n" %
+                (model_fence[0][i], model_fence[1][i], model_fence[2][i],
+                model_fence[3][i], model_fence[4][i], model_fence[5][i]))
 
 
 
@@ -128,9 +132,12 @@ ax.plot(position1[:,0], position1[:,1], position1[:,2], label='imu_int')
 ax.plot([position[0,0]], [position[0,1]], [position[0,2]], 'r.', label='start')
 
 for i in range(n):
+    id=2*i
     ax.plot([model_fence[0][i], model_fence[3][i]],
             [model_fence[1][i], model_fence[4][i]],
             [model_fence[2][i], model_fence[5][i]], 'y')
+    ax.text(model_fence[0][i], model_fence[1][i], model_fence[2][i], '%d'%(id))
+    ax.text(model_fence[3][i], model_fence[4][i], model_fence[5][i], '%d'%(id+1))
 
 ax.legend()
 ax.set_xlabel('X')

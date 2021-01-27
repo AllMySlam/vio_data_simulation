@@ -6,6 +6,7 @@
 #define IMUSIM_PARAM_H
 
 #include <eigen3/Eigen/Core>
+#define FENCE 0
 
 class Param{
 

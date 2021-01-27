@@ -28,6 +28,6 @@ ${OpenCV_LIBS}
 ${Sophus_LIBRARIES}
 )
 
-ADD_EXECUTABLE(data_gen main/gener_alldata.cpp src/param.h src/param.cpp src/utilities.h src/utilities.cpp src/imu.h src/imu.cpp)
+ADD_EXECUTABLE(data_gen main/gener_alldata.cpp src/param.h src/param.cpp src/utilities.h src/utilities.cpp src/imu.h src/imu.cpp test/AutoDiff.h test/AutoDiff.cpp test/EigenFunction.h test/EigenFunction.cpp)
 TARGET_LINK_LIBRARIES (data_gen ${LINK_LIBS})
 

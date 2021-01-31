@@ -7,5 +7,7 @@
 
 void QR();
 void ImuInt();
+void TestEigenGeometry();
+void TestEigen();
 
 #endif //EIGENFUNCTION_H

@@ -215,8 +215,8 @@ void TestAutoDiff2()
 //https://gitlab.uliege.be/C.Duchesne/trio/blob/236a9b7f6c6c66cfeee52cc2241aaed7ff760b69/eigen/unsupported/test/levenberg_marquardt.cpp
 void TestAutoDiffOfLM()
 {
-    std::cout << "_______________ [TestAutoDiffOfLM] ______________ " << std::endl;
 
+    std::cout << "_______________ [TestAutoDiffOfLM] ______________ " << std::endl;
 }
 
 //https://stackoverflow.com/questions/18509228/how-to-use-the-eigen-unsupported-levenberg-marquardt-implementation

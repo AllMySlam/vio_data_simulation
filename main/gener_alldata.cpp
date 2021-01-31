@@ -14,6 +14,8 @@ using Points = std::vector<Point, Eigen::aligned_allocator<Point> >;
 using Line = std::pair<Eigen::Vector4d, Eigen::Vector4d>;
 using Lines = std::vector<Line, Eigen::aligned_allocator<Line> >;
 
+
+
 void CreatePointsLines(Points& points, Lines& lines)
 {
     std::ifstream f;
@@ -84,9 +86,8 @@ void CreatePointsLines(Points& points, Lines& lines)
 int main()
 {
     // test begin
-    QR();
-    ImuInt();
-    TestAutoDiff();
+    TestEigen();
+//    TestAutoDiff();
     return 0;
     // test end
 
